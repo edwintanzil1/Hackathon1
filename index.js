@@ -67,24 +67,33 @@ function generateShoes(data) {
         const divCard = document.createElement('div');
         divCard.classList.add('card');
         divCard.style.width = "18rem";
+        divCard.style.display = "inline-block"
+        divCard.style.height = "15 rem" 
+        divCard.style.margin = "3rem"
         // console.log(divCard);
     
         let imageCard = document.createElement('img');
         imageCard.src = data[i].gambar;
         imageCard.classList.add('card-img-top');
         imageCard.alt = `Shoe Picture ${data[i].nama}`;
+        
     
         divCard.appendChild(imageCard);
     
         let divCardBody = document.createElement('div');
-        divCardBody.classList.add('card-body');
+        divCardBody.classList.add('card-img-top');
     
         let namaShoe = document.createElement('h5');
         namaShoe.innerHTML = data[i].nama;
-        let merkShoe = document.createElement('p');
+        namaShoe.classList.add('text-card');
+
+        let merkShoe = document.createElement('h5');
         merkShoe.innerHTML = data[i].merk;
+        merkShoe.classList.add('text-card');
+
         let hargaShoe = document.createElement('p');
         hargaShoe.innerHTML = `Rp.${data[i].harga}`;
+        hargaShoe.classList.add('text-card');
     
         let linkBtn = document.createElement('a');
         linkBtn.classList.add('btn', 'btn-primary');
