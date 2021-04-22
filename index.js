@@ -120,12 +120,97 @@ function addToCart (event){
     let target = event.target;
     let cardBody = target.parentNode;
     let card = cardBody.parentNode;
-    // console.log(card);
 
     const trEl = document.createElement('tr');
-    let tdImage = document.createElement('td');
-    // tdImage.style.
+    let tdGambar = document.createElement('td');
+    tdGambar.setAttribute('width', '80');
+    tdGambar.innerHTML = `<img src=${card.firstChild.src} height="60" alt="${cardBody.childNodes[0].innerHTML}" />`;
+
+    // Nama
+    let tdNama = document.createElement('td');
+    tdNama.style.verticalAlign = 'middle';
+    tdNama.style.color = 'black';
+    tdNama.innerHTML = `${cardBody.childNodes[0].innerHTML}`;
+
+    // Merk
+    let tdMerk = document.createElement('td');
+    tdMerk.style.verticalAlign = 'middle';
+    tdMerk.style.color = 'black';
+    tdMerk.innerHTML = `${cardBody.childNodes[1].innerHTML}`;
+
+    // Harga
+    let tdHarga = document.createElement('td');
+    tdHarga.style.verticalAlign = 'middle';
+    tdHarga.style.color = 'black';
+    tdHarga.innerHTML = `${cardBody.childNodes[2].innerHTML}`;
+    // `
+    // <input type="text" id="harga" name="harga" value="${cardBody.childNodes[2].innerHTML}" readonly>
+    // `;
+
+    // Ukuran
+    let tdUkuran = document.createElement('td');
+    tdUkuran.style.verticalAlign = 'middle';
+    tdUkuran.style.color = 'black';
+    tdUkuran.innerHTML = `
+    <input type="number" id="ukuran" name="ukuran" min="35" max="46" size="5" value="42">
+    `;
+
+    // Jumlah
+    let tdJumlah = document.createElement('td');
+    tdJumlah.style.verticalAlign = 'middle';
+    tdJumlah.style.color = 'black';
+    tdJumlah.innerHTML = `
+    <input type="number" id="jumlah" name="jumlah" min="1" size="5" value="0" onchange="hitungTotal(this)">
+    `;
+
+    // Total
+    let tdTotal = document.createElement('td');
+    tdTotal.style.verticalAlign = 'middle';
+    tdTotal.style.color = 'black'
+    tdTotal.innerHTML = `
+    <input type="text" id="total" name="total" value="0" readonly>
+    `;
+
+    // Remove
+    let tdRemove = document.createElement('td');
+    tdTotal.style.verticalAlign = 'middle';
+    tdRemove.innerHTML = `
+    <a href="#"><img src= "https://icons-for-free.com/iconfiles/png/512/cercle+close+delete+dismiss+remove+icon-1320196712448219692.png" width=30px class="imgRemove"></a>
+    `;
+    tdRemove.addEventListener('click', removeList);
     
 
+    trEl.appendChild(tdGambar);
+    trEl.appendChild(tdNama);
+    trEl.appendChild(tdMerk);
+    trEl.appendChild(tdHarga);
+    trEl.appendChild(tdUkuran);
+    trEl.appendChild(tdJumlah);
+    trEl.appendChild(tdTotal);
+    trEl.appendChild(tdRemove);
 
+
+
+    tBodyEl.appendChild(trEl);
+}
+
+
+
+function hitungTotal (jumlah) {
+    let parentJumlah = jumlah.parentNode;
+    let parentTd = parentJumlah.parentNode;
+    let inputHarga = parentTd.childNodes[3].innerHTML;
+
+    let inputTotal = parentTd.childNodes[6].childNodes[1];
+    // console.log(inputTotal.childNodes[1]);
+    inputTotal.value = Number(inputHarga.slice(3)) * Number(jumlah.value);
+}
+
+
+
+function removeList(event) {
+    // console.log(event.target);
+    let currentList = event.target.parentNode.parentNode.parentNode;
+    // console.log(event.target.parentNode.parentNode.parentNode);
+    currentList.parentNode.removeChild(currentList);
 }
