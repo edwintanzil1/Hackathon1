@@ -214,3 +214,15 @@ function removeList(event) {
     // console.log(event.target.parentNode.parentNode.parentNode);
     currentList.parentNode.removeChild(currentList);
 }
+
+// const myForm = document.getElementById('tombol')
+// myForm.a
+
+function form(){
+    let isi = document.getElementById('tombol')
+    let nama = document.getElementById('nama')
+    let alamat = document.getElementById('alamat')
+    let cash = document.getElementById('cash')
+    let debit = document.getElementById('debit')
+    let credit = document.getElementById('credit')
+}
