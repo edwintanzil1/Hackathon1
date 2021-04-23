@@ -1,6 +1,6 @@
 // console.log(window.location.search);
 
-
+// Get the total
 const params = new URLSearchParams(window.location.search);
 
 let totalInsert = document.getElementById('totalPrice');
@@ -10,6 +10,7 @@ let priceNum = Number(params.get('total'));
 totalInsert.innerHTML = `Total Price: ${Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(Number(params.get('total')))}`;
 
 
+// Calculate shipping fee
 function hitungShipping () {
     let priceNum = Number(params.get('total'));
     const selectDelivery = document.getElementById('exampleFormControlSelect2');

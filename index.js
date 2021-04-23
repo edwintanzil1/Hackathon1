@@ -92,9 +92,9 @@ function generateShoes(data) {
         merkShoe.classList.add('text-card');
 
         let hargaShoe = document.createElement('p');
-        // hargaShoe.setAttribute('class', `${data[i].harga}`);
-        // hargaShoe.innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(data[i].harga);
-        hargaShoe.innerHTML = `Rp.${data[i].harga}`;
+        hargaShoe.setAttribute('data-price', `${data[i].harga}`);
+        hargaShoe.innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(data[i].harga);
+        // hargaShoe.innerHTML = `Rp.${data[i].harga}`;
         hargaShoe.classList.add('text-card');
     
         let linkBtn = document.createElement('a');
@@ -144,6 +144,8 @@ function addToCart (event){
     let tdHarga = document.createElement('td');
     tdHarga.style.verticalAlign = 'middle';
     tdHarga.style.color = 'black';
+    tdHarga.setAttribute('data-price', cardBody.childNodes[2].dataset.price);
+    // console.log(cardBody.childNodes[2].dataset);
     tdHarga.innerHTML = `${cardBody.childNodes[2].innerHTML}`;
     // `
     // <input type="text" id="harga" name="harga" value="${cardBody.childNodes[2].innerHTML}" readonly>
@@ -181,7 +183,6 @@ function addToCart (event){
     `;
     tdRemove.addEventListener('click', removeList);
     
-
     trEl.appendChild(tdGambar);
     trEl.appendChild(tdNama);
     trEl.appendChild(tdMerk);
@@ -190,8 +191,6 @@ function addToCart (event){
     trEl.appendChild(tdJumlah);
     trEl.appendChild(tdTotal);
     trEl.appendChild(tdRemove);
-
-
 
     tBodyEl.appendChild(trEl);
 }
@@ -202,12 +201,14 @@ function hitungTotal (jumlah) {
     let parentJumlah = jumlah.parentNode;
     let parentTd = parentJumlah.parentNode;
     let inputHarga = parentTd.childNodes[3].innerHTML;
-    // let inputHargaValue = parentTd.childNodes[3];
+
+    let inputHargaValue = parentTd.childNodes[3].dataset.price
     // console.log(inputHargaValue);
 
     let inputTotal = parentTd.childNodes[6].childNodes[1];
     // console.log(inputTotal.childNodes[1]);
-    inputTotal.value = Number(inputHarga.slice(3)) * Number(jumlah.value);
+    // inputTotal.value = Number(inputHarga.slice(3)) * Number(jumlah.value);
+    inputTotal.value = Number(inputHargaValue) * Number(jumlah.value);
 }
 
 
@@ -240,28 +241,15 @@ function filterResult () {
     }
     let divContainer = document.getElementById('container');
     divContainer.innerHTML = '';
-    generateShoes(objNew);
+    if (objNew.length === 0) {
+        divContainer.classList.add("mx-auto");
+        divContainer.innerHTML = `
+        <h1>Search Not Found :(</h1>
+        `;
+    } else {
+        generateShoes(objNew);
+    }
 }
-
-
-// // Get the total price
-
-// const btnCheckout = document.getElementById('btn-checkout');
-// btnCheckout.addEventListener('click', calculateTotalPrice);
-
-
-
-// function calculateTotalPrice () {
-//     console.log(tBodyEl.childNodes);
-// }
-
-// Calculate shipping fee
-
-// selectDelivery.addEventListener('change', hitungShipping);
-
-
-// console.log(selectDelivery.value);
-
 
 
 // Pindah halaman checkout
