@@ -272,5 +272,5 @@ function changePageCheckout () {
     // console.log(tBodyEl.childNodes[2].childNodes[6].childNodes[1].value);
 
 
-    window.location.href = `Checkout.html?total=${overallPrice}`;
+     window.location.href = `/Hackathon1/Checkout.html?total=${overallPrice}`;
 }
