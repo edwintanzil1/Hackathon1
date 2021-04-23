@@ -28,8 +28,8 @@
                 <a class="nav-link active" aria-current="page" href="./Home.html">Home</a>
               </li>
             </ul>
-            <div style="float:right">
-              <input type="text" placeholder="Search Shoe" id="search" name="search">
+            <div style="float:right" class="float-right">
+              <input type="text" placeholder="Search Shoe" id="search" name="search" size="30">
             </div>
           </div>
         </div>
@@ -37,34 +37,56 @@
 
 
       <form class="checkout">
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="exampleFormControlInput1">Email address</label>
           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
-        <div class="form-group">
+
+        <div class="form-group mb-3">
+          <label for="exampleFormControlInput2">Phone Number</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="exampleFormControlTextarea1">Address</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your address"></textarea>
+        </div>
+
+
+        <div class="form-group mb-3">
           <label for="exampleFormControlSelect1">Payment Method</label>
           <select class="form-control" id="exampleFormControlSelect1">
-            <option>Virtual Transfer</option>
-            <option>Credit card</option>
-            <option>Gopei</option>
-            <option>Shopi</option>
+            <option value="virtual transfer">Virtual Transfer</option>
+            <option value="credit card">Credit card</option>
+            <option value="gopei">Gopei</option>
+            <option value="shopi">Shopi</option>
+            <option value="COD">Cash on Delivery</option>
         </select>
            
         </div>
-        <div class="form-group">
+
+        <div class="form-group mb-3">
           <label for="exampleFormControlSelect2">Delivery Method</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>G n Tea</option>
-            <option>Taka</option>
-            <option>TheFast</option>
-            <option>Cash on Delivery</option>
-      
+          <select class="form-control" id="exampleFormControlSelect2" onchange="hitungShipping()">
+            <option value="GnTea">G n Tea</option>
+            <option value="taka">Taka</option>
+            <option value="theFast">TheFast</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Additional notes</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="ex. extra bag"></textarea>
+        <div class="mb-3">
+          <h4 id="shipping"></h4>
         </div>
-        <button  class="finish-btn" >Finish</button>
+
+        <div class="mb-3">
+          <h3 id="totalPrice"></h3>
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="exampleFormControlTextarea2">Additional notes</label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="ex. extra bag"></textarea>
+        </div>
+        <button  class="finish-btn btn btn-primary" style="padding:10px 40px; font-size: 20px" >Finish</button>
       </form>
-      </body>
+    <script src="indexCheckout.js"></script>
+  </body>
+</html>

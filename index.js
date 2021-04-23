@@ -92,6 +92,8 @@ function generateShoes(data) {
         merkShoe.classList.add('text-card');
 
         let hargaShoe = document.createElement('p');
+        // hargaShoe.setAttribute('class', `${data[i].harga}`);
+        // hargaShoe.innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(data[i].harga);
         hargaShoe.innerHTML = `Rp.${data[i].harga}`;
         hargaShoe.classList.add('text-card');
     
@@ -200,6 +202,8 @@ function hitungTotal (jumlah) {
     let parentJumlah = jumlah.parentNode;
     let parentTd = parentJumlah.parentNode;
     let inputHarga = parentTd.childNodes[3].innerHTML;
+    // let inputHargaValue = parentTd.childNodes[3];
+    // console.log(inputHargaValue);
 
     let inputTotal = parentTd.childNodes[6].childNodes[1];
     // console.log(inputTotal.childNodes[1]);
@@ -213,4 +217,72 @@ function removeList(event) {
     let currentList = event.target.parentNode.parentNode.parentNode;
     // console.log(event.target.parentNode.parentNode.parentNode);
     currentList.parentNode.removeChild(currentList);
+}
+
+
+
+// Search Fiture
+
+let searchInput = document.getElementById('search');
+searchInput.addEventListener('keyup', filterResult);
+
+function filterResult () {
+    // console.log(searchInput.value);
+    let objNew = [];
+    // if (searchInput.value === '') {
+    //     generateShoes(shoes);
+    // } 
+    for (let i = 0; i < shoes.length; i++) {
+        let lowInput = searchInput.value.toLowerCase()
+        if ((shoes[i].nama).toLowerCase().includes(lowInput) || (shoes[i].merk).toLowerCase().includes(lowInput)) {
+            objNew.push(shoes[i]);
+        }
+    }
+    let divContainer = document.getElementById('container');
+    divContainer.innerHTML = '';
+    generateShoes(objNew);
+}
+
+
+// // Get the total price
+
+// const btnCheckout = document.getElementById('btn-checkout');
+// btnCheckout.addEventListener('click', calculateTotalPrice);
+
+
+
+// function calculateTotalPrice () {
+//     console.log(tBodyEl.childNodes);
+// }
+
+// Calculate shipping fee
+
+// selectDelivery.addEventListener('change', hitungShipping);
+
+
+// console.log(selectDelivery.value);
+
+
+
+// Pindah halaman checkout
+
+let btnCheckout = document.getElementById('btnCheckout');
+
+btnCheckout.addEventListener('click', changePageCheckout);
+
+function changePageCheckout () {
+    // console.log(tBodyEl.childNodes);
+    let allTBody = tBodyEl.childNodes;
+    let overallPrice = 0;
+    for (let i = 1; i < allTBody.length; i++) {
+        let totalValue = tBodyEl.childNodes[i].childNodes[6].childNodes[1].value
+        // console.log(tBodyEl.childNodes[i].childNodes[6].childNodes[1].value);
+        overallPrice += Number(totalValue);
+    }
+    // console.log(overallPrice);
+    // console.log(tBodyEl.childNodes[1].childNodes[6].childNodes[1].value);
+    // console.log(tBodyEl.childNodes[2].childNodes[6].childNodes[1].value);
+
+
+    window.location.href = `/Checkout.html?total=${overallPrice}`;
 }
