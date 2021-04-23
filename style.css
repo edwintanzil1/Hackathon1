@@ -34,7 +34,7 @@ body{
     position: relative;
 }
 
-.container {
+.container2 {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -61,4 +61,17 @@ body{
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+    background-color: #edf6f9;
+    border: black;
+}
+
+.search-bar{
+    float: right;
+}
+
+
+.container2 {
+    
+    padding-bottom: 50px;
+    margin: 0 15rem;
 }
